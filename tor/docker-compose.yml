@@ -1,7 +1,7 @@
 version: "3"
 services:
   tor:
-    image: osminogin/tor-simple
+    image: osminogin/tor-simple # https://github.com/osminogin/docker-tor-simple
     container_name: tor
     network_mode: container:vpn
 
