@@ -2,7 +2,7 @@ version: "3"
 services:
   vpn:
 #    image: ghcr.io/bubuntux/nordvpn    # https://github.com/bubuntux/nordvpn
-    image: nordvpn #this is self build container of the above to make sure latest nordvpn is installed
+    image: nordvpn # this is self build container of the above to make sure latest nordvpn is installed
     container_name: vpn
     cap_add:
       - NET_ADMIN               # Required
@@ -11,9 +11,13 @@ services:
       - TOKEN=YOUR_OWN_TOKEN_HERE
       - CONNECT=United_States
       - TECHNOLOGY=NordLynx
-      - NETWORK=192.168.1.0/24  # So it can be accessed within the local network
-    ports:           #espose port here due to network mode
-      - 9050:9050
+      - NETWORK=192.168.1.0/24  # So exposed ports can be accessed within the local network
+    ports:           # expose TOR container port here due to network mode
+      - 9050:9050    # SOCKS5
+      - 9051:9051    # TOR control port
     sysctls:
       - net.ipv6.conf.all.disable_ipv6=1  # Recomended if using ipv4 only
 
+# The tor is available via SOCKS5 127.0.0.1 9050
+# or anywhere inside of the local network http://192.168.1.xxx:9050 - see environment: - NETWORK=
+# so you can host it from one machine and access on another machine within your LAN

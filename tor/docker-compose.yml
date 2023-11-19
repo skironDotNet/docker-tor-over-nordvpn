@@ -5,7 +5,5 @@ services:
     container_name: tor
     network_mode: container:vpn
 
-# the port is exposed in the vpn container due to network mode
-# The tor is available via SOCKS5 127.0.0.1 9050
-# or anywhere inside of the local network http://192.168.1.xxx:9050
-# so you can host it from diffrent machine and access on this machine
+# The ports are exposed in the vpn container due to network mode
+
