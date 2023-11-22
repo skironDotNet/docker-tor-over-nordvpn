@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd "${0%/*}" #go to dir where the script is located in case exec form a diffrent location
+
 container_name=tor
 if docker ps -a --format '{{.Names}}' | grep -Eq "^${container_name}\$"; then
   docker compose -f tor/docker-compose.yml down
@@ -15,3 +17,5 @@ else
 fi
 
 echo "*** Done!"
+
+sleep 5 # wait before exit to let user read the output if executed directly 

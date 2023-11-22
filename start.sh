@@ -5,6 +5,8 @@
 # another way would be to add tor to VPN container same way as all the init scripts are and create a script with IP check and re-try loop and run tor
 # but from single process per container perspective it better to manage 2 separate containers IMO
 
+cd "${0%/*}" #go to dir where the script is located in case exec form a diffrent location
+
 function waitWithCounter() {
     seconds=$1
     for((i=1;i<=$1;++i)) do
@@ -62,5 +64,5 @@ else
     echo "Tor should be available via 127.0.0.1:9050 or from any other machine via $localIP" 
 fi 
 
-
+sleep 5 # wait before exit to let user read the output if executed directly 
 
