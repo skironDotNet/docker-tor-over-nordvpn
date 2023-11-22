@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Start TOR tunnel
+Exec=sh -c $HOME/containers/gateway/start.sh
+Comment=
+Terminal=true
+PrefersNonDefaultGPU=false
+Icon=network-vpn
+Type=Application

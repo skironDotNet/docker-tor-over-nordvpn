@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Stop TOR tunnel
+Exec=sh -c $HOME/containers/gateway/stop.sh
+Comment=
+Terminal=true
+PrefersNonDefaultGPU=false
+Icon=network-offline
+Type=Application
