@@ -1,4 +1,3 @@
-version: "3"
 services:
   tor:
     image: osminogin/tor-simple # https://github.com/osminogin/docker-tor-simple

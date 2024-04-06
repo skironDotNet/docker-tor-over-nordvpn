@@ -1,4 +1,3 @@
-version: "3"
 services:
   vpn:
 #    image: ghcr.io/bubuntux/nordvpn    # https://github.com/bubuntux/nordvpn

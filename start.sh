@@ -47,8 +47,8 @@ HOME_IP=$(curl -s https://checkip.amazonaws.com)
 echo "*** Your home IP: $HOME_IP"
 echo "*** starting VPN container"
 docker compose -f vpn/docker-compose.yml up -d  
-echo "*** Waiting 5 seconds to make sure connection established"
-waitWithCounter 5
+echo "*** Waiting 10 seconds to make sure connection established"
+waitWithCounter 10
 IP=$(docker exec vpn curl -s https://checkip.amazonaws.com)
 echo "*** VPN obtained IP: $IP"
 
