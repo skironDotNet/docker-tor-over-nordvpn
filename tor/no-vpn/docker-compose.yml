@@ -1,0 +1,10 @@
+services:
+  tor:
+    image: osminogin/tor-simple # https://github.com/osminogin/docker-tor-simple
+    container_name: tor
+    ports:           
+      - 9050:9050    # SOCKS5
+      - 9051:9051    # TOR control port
+
+# The ports are exposed in local subnet
+
