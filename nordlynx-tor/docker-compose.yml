@@ -22,7 +22,7 @@ services:
 
     tor:
         image: osminogin/tor-simple # https://github.com/osminogin/docker-tor-simple
-        container_name: tor
+        container_name: tor-over-nordlynx
         #restart: unless-stopped
         depends_on:
             - nordlynx
