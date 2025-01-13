@@ -1,0 +1,34 @@
+services:
+    nordlynx: #from https://github.com/bubuntux/nordlynx
+        image: ghcr.io/bubuntux/nordlynx
+        hostname: nordlynx
+        container_name: nordlynx
+        ports:           # expose TOR container port here due to network mode
+          - 9050:9050    # SOCKS5
+          - 9051:9051    # TOR control port
+        cap_add:
+            - NET_ADMIN                             # required
+            - SYS_MODULE                            # maybe
+        environment:
+            - PRIVATE_KEY=${PRIVATE_KEY}            # load ACCESS_TOKEN from .env file. Getting key how to, at https://github.com/bubuntux/nordlynx
+            #- QUERY=filters\[servers_groups\]\[identifier\]=legacy_p2p # unsure what it does, refer to bubuntux/nordlynx
+            - NET_LOCAL=192.168.1.0/24  # So exposed ports can be accessed within the local network, must match your local network
+            - TZ=America/New_York
+            - DNS=103.86.96.100,103.86.99.100 # NordVPN DNS
+        sysctls:
+            - net.ipv4.conf.all.src_valid_mark=1   # maybe
+            - net.ipv4.conf.all.rp_filter=2        # maybe; set reverse path filter to loose mode
+            - net.ipv6.conf.all.disable_ipv6=1     # disable ipv6; recommended if using ipv4 only
+
+    tor:
+        image: osminogin/tor-simple # https://github.com/osminogin/docker-tor-simple
+        container_name: tor
+        #restart: unless-stopped
+        depends_on:
+            - nordlynx
+        network_mode: service:nordlynx
+
+# The tor is available via SOCKS5 127.0.0.1 9050
+# or anywhere inside of the local network http://192.168.1.xxx:9050 - see 
+#   environment: - NET_LOCAL=
+# this way you can host it from one machine and access on another machine within your LAN
