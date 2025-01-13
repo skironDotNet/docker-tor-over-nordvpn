@@ -1,0 +1,1 @@
+this is to run TOR without a VPN or having VPN enabled at the machine level
